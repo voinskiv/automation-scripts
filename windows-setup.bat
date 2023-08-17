@@ -34,9 +34,10 @@ echo Add OS Updates
 usoclient ScanInstallWait
 
 echo Add Dell Updates
-"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe"  /configure -scheduleAuto /applyUpdates
+"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /configure -scheduleAuto
+"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /applyUpdates
 
-:: Add App Updates
+:: auto App Updates
 
 echo Remove widgets from taskbar
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
