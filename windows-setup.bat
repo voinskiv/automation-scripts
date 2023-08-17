@@ -38,7 +38,8 @@ echo Add Dell Updates
 "%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /applyUpdates
 
 echo Add App Updates
-winget upgrade --all --silent
+:: winget upgrade --all --silent
+powershell -Command "& {Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseModernAppManagement_AppManagement01" | Invoke-CimMethod -MethodName UpdateScanMethod;}"
 
 echo Remove widgets from taskbar
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
