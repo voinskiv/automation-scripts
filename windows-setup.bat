@@ -42,13 +42,12 @@ echo Add Dell Updates
 echo Remove widgets from taskbar
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 
-echo Clear Desktop
+echo Clear Desktop Downloads
 del /q "%userprofile%"\Desktop\*
-rd /s /q "%systemdrive%"\$recycle.bin 
+rd /s /q "%systemdrive%"\$recycle.bin
+del /q "%userprofile%"\Downloads\*setup.bat
 
 echo Set Wallpaper
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\web\wallpaper\Windows\img0.jpg" /f
-
-del /q "%userprofile%"\Downloads\*setup.bat
 
 :: pause
