@@ -44,6 +44,7 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Ad
 
 echo Clear Desktop
 del /q "%userprofile%"\Desktop\*
+rd /s %systemdrive%$recycle.bin 
 
 echo Set Wallpaper
 reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\web\wallpaper\Windows\img0.jpg" /f
