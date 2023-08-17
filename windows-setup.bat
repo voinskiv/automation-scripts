@@ -49,7 +49,7 @@ reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\
 
 echo Clear Desktop Downloads
 del /q "%userprofile%"\Desktop\*
-del /q "%userprofile%"\Downloads\*setup.bat
+:: del /q "%userprofile%"\Downloads\*setup.bat
 rd /s /q "%systemdrive%"\$recycle.bin
 
 :: pause
