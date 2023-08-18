@@ -47,7 +47,8 @@ echo Remove widgets from taskbar
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 
 echo Set Wallpaper
-reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\web\wallpaper\Windows\img0.jpg" /f
+reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\Web\Wallpaper\Windows\img0.jpg" /f
+reg add "HKLU\Software\Policies\Microsoft\Windows\Personalization" /v LockScreenImage /t REG_SZ /d "C:\Windows\Web\Wallpaper\Windows\img0.jpg" /f
 
 echo Clear Desktop Downloads
 del /q "%userprofile%"\Desktop\*
