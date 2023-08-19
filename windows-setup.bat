@@ -41,6 +41,7 @@ echo Add App Updates
 :: winget upgrade --all --silent
 powershell -Command "& {Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseModernAppManagement_AppManagement01" | Invoke-CimMethod -MethodName UpdateScanMethod;}"
 start ms-windows-store:
+:: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
 :: start ms-powerautomate:
 
 echo Remove widgets from taskbar
