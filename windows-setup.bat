@@ -9,7 +9,7 @@ echo Add Remote Desktop
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
-echo Remove apps
+echo Remove Apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
 winget uninstall --name "Dell Core Services"
 winget uninstall --name "Dell Digital Delivery"
@@ -31,6 +31,9 @@ winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
 
+echo Add Apps
+winget install google-drive
+
 echo Add OS Updates
 usoclient ScanInstallWait
 
@@ -45,7 +48,7 @@ start ms-windows-store:
 :: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
 :: start ms-powerautomate:
 
-echo Remove widgets from taskbar
+echo Remove Widgets from Taskbar
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 
 echo Set Wallpaper
