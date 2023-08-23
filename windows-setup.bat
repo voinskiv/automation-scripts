@@ -62,4 +62,9 @@ del /q "%userprofile%"\Desktop\*
 :: del /q "%userprofile%"\Downloads\*setup.bat
 rd /s /q "%systemdrive%"\$recycle.bin
 
+echo Set up Google Drive
+:: Sign in
+:: Add folders to sync
+:: Add folders to backup to Photos
+
 :: pause
