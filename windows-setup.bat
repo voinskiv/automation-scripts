@@ -13,7 +13,7 @@ echo Add Parsec
 cd "%UserProfile%"\Downloads"
 curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
 parsec-windows.exe /silent /shared /vdd
-timeout 5
+timeout /t 5
 del /f parsec-windows.exe
 
 echo Remove Apps
