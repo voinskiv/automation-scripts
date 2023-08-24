@@ -9,6 +9,12 @@ echo Add Remote Desktop
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
+echo Add Parsec
+cd "%userprofile%"\Downloads"
+curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
+parsec-windows.exe /silent /shared /vdd
+del /f parsec-windows.exe
+
 echo Remove Apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
 winget uninstall --name "Dell Core Services"
