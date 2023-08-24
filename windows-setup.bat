@@ -39,8 +39,8 @@ winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
 
 echo Add Apps
-winget install "Google Drive"
 winget install "Google Chrome"
+winget install "Google Drive"
 
 echo Add OS Updates
 usoclient ScanInstallWait
