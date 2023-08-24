@@ -10,7 +10,7 @@ reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
 echo Add Parsec
-cd "%userprofile%"\Downloads"
+cd "%UserProfile%"\Downloads"
 curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
 parsec-windows.exe /silent /shared /vdd
 timeout 5
@@ -71,9 +71,10 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeli
 reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v RotatingLockScreenOverlayEnabled /t REG_DWORD /d 0 /f
 
 echo Clear Desktop Downloads
-del /q "%userprofile%"\Desktop\*
-:: del /q "%userprofile%"\Downloads\*setup.bat
-rd /s /q "%systemdrive%"\$recycle.bin
+del /q "%UserProfile%"\Desktop\*
+del /q "%Public%"\Desktop\*
+:: del /q "%UserProfile%"\Downloads\*setup.bat
+rd /s /q "%SystemDrive%"\$recycle.bin
 
 :: echo Set up Google Drive
 :: Sign in
