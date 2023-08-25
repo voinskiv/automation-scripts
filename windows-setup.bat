@@ -87,7 +87,7 @@ del /q "%UserProfile%"\Downloads\*
 rd /s /q "%SystemDrive%"\$recycle.bin
 
 echo Remove Apps at startup
-reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" "SecurityHealth"=-
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
 
 :: echo Set up Google Drive
 :: Sign in
