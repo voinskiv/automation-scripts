@@ -13,7 +13,8 @@ echo Add Parsec
 cd "%UserProfile%"\Downloads"
 curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
 parsec-windows.exe /silent /shared /vdd
-del /f parsec-windows.exe
+:: ping localhost
+:: del /f parsec-windows.exe
 
 echo Remove Apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
@@ -45,8 +46,8 @@ echo Add Microsoft Teams
 cd "%UserProfile%"\Downloads"
 curl -LOJ https://go.microsoft.com/fwlink/?linkid=2187327
 TeamsSetup_c_w_.exe /silent
-timeout /t 25
-del /f TeamsSetup_c_w_.exe
+:: ping localhost
+:: del /f TeamsSetup_c_w_.exe
 
 echo Add OS Updates
 usoclient ScanInstallWait
