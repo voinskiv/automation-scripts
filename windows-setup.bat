@@ -46,7 +46,7 @@ echo Add Microsoft Teams
 cd "%UserProfile%"\Downloads"
 curl -LOJ https://go.microsoft.com/fwlink/?linkid=2187327
 TeamsSetup_c_w_.exe /silent
-timeout /t 5
+timeout /t 25
 del /f TeamsSetup_c_w_.exe
 
 echo Add OS Updates
