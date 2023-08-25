@@ -83,7 +83,7 @@ reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeli
 echo Clear Desktop Downloads
 del /q "%UserProfile%"\Desktop\*
 del /q "%Public%"\Desktop\*
-:: del /q "%UserProfile%"\Downloads\*setup.bat
+del /q "%UserProfile%"\Downloads\*
 rd /s /q "%SystemDrive%"\$recycle.bin
 
 :: echo Set up Google Drive
