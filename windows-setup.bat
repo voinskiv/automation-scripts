@@ -86,6 +86,9 @@ del /q "%Public%"\Desktop\*
 del /q "%UserProfile%"\Downloads\*
 rd /s /q "%SystemDrive%"\$recycle.bin
 
+echo Remove Apps at startup
+reg delete "Computer\HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" "SecurityHealth"=-
+
 :: echo Set up Google Drive
 :: Sign in
 :: Add folders to sync
