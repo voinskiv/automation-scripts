@@ -89,6 +89,11 @@ rd /s /q "%SystemDrive%"\$recycle.bin
 echo Remove Apps at startup
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
 
+:: echo Set up Google Chrome
+:: Sign In
+:: Activate sync
+:: Set as default browser (also pdf)
+
 :: echo Set up Google Drive
 :: Sign in
 :: Add folders to sync
