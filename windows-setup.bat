@@ -9,6 +9,9 @@ echo Add Remote Desktop
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
+echo Add Tailscale
+winget install "Tailscale" -h
+
 echo Add Parsec
 cd "%UserProfile%"\Downloads"
 curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
