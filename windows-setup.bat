@@ -12,12 +12,10 @@ netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 echo Add Tailscale
 winget install "Tailscale" -h
 
-echo Add Parsec
-cd "%UserProfile%"\Downloads"
-curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
-parsec-windows.exe /silent /shared /vdd
-:: ping localhost
-:: del /f parsec-windows.exe
+:: echo Add Parsec
+:: cd "%UserProfile%"\Downloads"
+:: curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
+:: parsec-windows.exe /shared /vdd /silent
 
 echo Remove Apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
