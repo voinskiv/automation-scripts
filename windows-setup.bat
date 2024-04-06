@@ -86,7 +86,7 @@ del /q "%Public%"\Desktop\*
 del /q "%UserProfile%"\Downloads\*
 rd /s /q "%SystemDrive%"\$recycle.bin
 
-echo Remove Apps at startup
+echo Remove Apps at Startup
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDrive" /f
 
