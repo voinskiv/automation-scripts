@@ -44,7 +44,7 @@ winget install "Google Chrome"
 winget install "Google Drive"
 
 echo Add Microsoft Teams
-cd "%UserProfile%"\Downloads"
+cd "%UserProfile%\Downloads"
 curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
 teamsbootstrapper.exe -p
 
