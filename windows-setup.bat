@@ -45,8 +45,8 @@ winget install "Google Drive"
 
 echo Add Microsoft Teams
 cd "%UserProfile%"\Downloads"
-curl -L https://go.microsoft.com/fwlink/?linkid=2196106 -o MSTeams-x64.msix
-MSTeams-x64.msix
+curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
+teamsbootstrapper.exe -p
 
 echo Add OS Updates
 usoclient ScanInstallWait
