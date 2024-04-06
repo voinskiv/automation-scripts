@@ -47,6 +47,7 @@ echo Add Microsoft Teams
 cd "%UserProfile%"\Downloads"
 curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
 teamsbootstrapper.exe -p
+pause
 
 echo Add OS Updates
 usoclient ScanInstallWait
