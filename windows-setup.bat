@@ -45,8 +45,8 @@ winget install "Google Drive"
 
 echo Add Microsoft Teams
 cd "%UserProfile%"\Downloads"
-curl -LOJ https://go.microsoft.com/fwlink/?linkid=2196106
-Add-AppProvisionedPackage -Online -PackagePath "%UserProfile%\Downloads\MSTeams-x64.msix" -SkipLicense
+curl -L https://go.microsoft.com/fwlink/?linkid=2196106 -o MSTeams-x64.msix
+MSTeams-x64.msix
 
 echo Add OS Updates
 usoclient ScanInstallWait
