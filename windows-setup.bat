@@ -1,6 +1,6 @@
 @echo off
 
-echo Add ssh
+echo Turn on remote login using SSH
 dism /Online /Add-Capability /CapabilityName:OpenSSH.Server
 powershell -Command "& {Set-Service -Name sshd -StartupType 'Automatic';}"
 powershell -Command "& {Start-Service sshd;}"
