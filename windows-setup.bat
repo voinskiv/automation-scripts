@@ -1,23 +1,23 @@
 @echo off
 
+echo Deploy secure remote access using Tailscale
+winget install "Tailscale" -h
+
 echo Turn on remote login using SSH
 dism /Online /Add-Capability /CapabilityName:OpenSSH.Server
 powershell -Command "& {Set-Service -Name sshd -StartupType 'Automatic';}"
 powershell -Command "& {Start-Service sshd;}"
 
-echo Add Remote Desktop
+echo Turn on remote management using Remote Desktop
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
-echo Add Tailscale
-winget install "Tailscale" -h
-
-:: echo Add Parsec
+:: echo Turn on remote management using Parsec
 :: cd "%UserProfile%"\Downloads"
 :: curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
 :: parsec-windows.exe /shared /vdd /silent
 
-echo Remove Apps
+echo Uninstall pre-installed apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
 winget uninstall --name "Dell Core Services"
 winget uninstall --name "Dell Digital Delivery"
