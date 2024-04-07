@@ -1,5 +1,8 @@
 @echo off
 
+echo Update system
+usoclient ScanInstallWait
+
 echo Deploy secure remote access using Tailscale
 winget install "Tailscale" -h
 
@@ -47,9 +50,6 @@ winget uninstall --name "Microsoft-Tipps"
 winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
-
-echo Add OS Updates
-usoclient ScanInstallWait
 
 echo Add Dell Updates
 "%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /configure -scheduleAuto
