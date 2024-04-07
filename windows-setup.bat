@@ -1,5 +1,8 @@
 @echo off
 
+Set up data encryption with BitLocker
+manage-bde -on C:
+
 echo Update system
 usoclient ScanInstallWait
 
@@ -94,6 +97,9 @@ rd /s /q "%SystemDrive%"\$recycle.bin
 :: echo Start Power Automate for further setup
 :: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
 :: start ms-powerautomate:
+
+Turn on data encryption with BitLocker
+:: Create BitLocker recovery key
 
 :: echo Set up Google Chrome
 :: Sign In with Google account to activate sync
