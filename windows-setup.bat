@@ -72,11 +72,6 @@ echo Turn on remote management using Remote Desktop
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
-:: echo Turn on remote management using Parsec
-:: cd "%UserProfile%"\Downloads"
-:: curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
-:: parsec-windows.exe /shared /vdd /silent
-
 echo Deploy secure remote access using Tailscale
 winget install "Tailscale" -h
 
