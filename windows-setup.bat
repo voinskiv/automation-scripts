@@ -60,11 +60,6 @@ start ms-windows-store:
 echo Install Microsoft 365 Apps
 winget install --name "Microsoft 365 Apps"
 
-:: echo Install Microsoft Teams
-:: cd "%UserProfile%\Downloads"
-:: curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
-:: teamsbootstrapper.exe -p
-
 echo Install Acrobat Reader to interact with PDF files
 winget install --name "Adobe Acrobat Reader DC (64-bit)"
 
