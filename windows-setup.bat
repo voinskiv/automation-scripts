@@ -57,10 +57,16 @@ echo Update pre-installed apps
 powershell -Command "& {Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseModernAppManagement_AppManagement01" | Invoke-CimMethod -MethodName UpdateScanMethod;}"
 start ms-windows-store:
 
+echo Install Microsoft 365 Apps
+winget install --name "Microsoft 365 Apps"
+
 :: echo Install Microsoft Teams
 :: cd "%UserProfile%\Downloads"
 :: curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
 :: teamsbootstrapper.exe -p
+
+echo Install Acrobat Reader to interact with PDF files
+winget install --name "Adobe Acrobat Reader DC (64-bit)"
 
 echo Turn on remote login using SSH
 dism /Online /Add-Capability /CapabilityName:OpenSSH.Server
@@ -84,9 +90,6 @@ winget install --name "Google Chrome"
 
 echo Install Google Chrome to sync Google account files
 winget install "Google Drive"
-
-echo Install Acrobat Reader to interact with PDF files
-winget install --name "Adobe Acrobat Reader DC (64-bit)"
 
 echo Disable startup apps
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
