@@ -79,7 +79,7 @@ echo Deploy secure remote access using Tailscale
 winget install "Tailscale" -h
 
 echo Install Google Chrome to sync Google account
-winget install "Google Chrome"
+winget install --name "Google Chrome"
 
 echo Install Google Chrome to sync Google account files
 winget install "Google Drive"
