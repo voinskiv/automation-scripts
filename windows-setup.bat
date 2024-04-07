@@ -98,8 +98,9 @@ rd /s /q "%SystemDrive%"\$recycle.bin
 :: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
 :: start ms-powerautomate:
 
-Turn on data encryption with BitLocker
+:: echo Turn on data encryption with BitLocker
 :: Create BitLocker recovery key
+:: Save recovery key in Google Password Manager
 
 :: echo Set up Google Chrome
 :: Sign In with Google account to activate sync
