@@ -84,6 +84,9 @@ winget install --name "Google Chrome"
 echo Install Google Chrome to sync Google account files
 winget install "Google Drive"
 
+echo Install Acrobat Reader to interact with PDF files
+winget install --name "Adobe Acrobat Reader DC (64-bit)"
+
 echo Disable startup apps
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDrive" /f
