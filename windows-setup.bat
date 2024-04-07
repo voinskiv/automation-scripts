@@ -3,6 +3,10 @@
 echo Update system
 usoclient ScanInstallWait
 
+echo Deploy Dell updates
+"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /configure -scheduleAuto
+"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /applyUpdates
+
 echo Change desktop background image 
 reg add "HKCU\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\Web\Wallpaper\Windows\img0.jpg" /f
 
@@ -22,35 +26,7 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Ta
 echo Turn off Bing in search
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /V BingSearchEnabled /T REG_DWORD /D 0 /f
 
-
-
-echo Deploy secure remote access using Tailscale
-winget install "Tailscale" -h
-
-echo Turn on remote login using SSH
-dism /Online /Add-Capability /CapabilityName:OpenSSH.Server
-powershell -Command "& {Set-Service -Name sshd -StartupType 'Automatic';}"
-powershell -Command "& {Start-Service sshd;}"
-
-echo Turn on remote management using Remote Desktop
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
-netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
-
-:: echo Turn on remote management using Parsec
-:: cd "%UserProfile%"\Downloads"
-:: curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
-:: parsec-windows.exe /shared /vdd /silent
-
-echo Add Apps
-winget install "Google Chrome"
-winget install "Google Drive"
-
-:: echo Add Microsoft Teams
-:: cd "%UserProfile%\Downloads"
-:: curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
-:: teamsbootstrapper.exe -p
-
-echo Uninstall pre-installed apps
+echo Uninstall not needed pre-installed apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
 winget uninstall --name "Dell Core Services"
 winget uninstall --name "Dell Digital Delivery"
@@ -72,37 +48,60 @@ winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
 
-echo Add Dell Updates
-"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /configure -scheduleAuto
-"%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /applyUpdates
-
-echo Add App Updates
+echo Update pre-installed apps
 :: winget upgrade --all --silent
 powershell -Command "& {Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseModernAppManagement_AppManagement01" | Invoke-CimMethod -MethodName UpdateScanMethod;}"
 start ms-windows-store:
-:: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
-:: start ms-powerautomate:
 
+:: echo Install Microsoft Teams
+:: cd "%UserProfile%\Downloads"
+:: curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
+:: teamsbootstrapper.exe -p
 
+echo Turn on remote login using SSH
+dism /Online /Add-Capability /CapabilityName:OpenSSH.Server
+powershell -Command "& {Set-Service -Name sshd -StartupType 'Automatic';}"
+powershell -Command "& {Start-Service sshd;}"
 
-echo Clear Desktop Downloads
+echo Turn on remote management using Remote Desktop
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
+
+:: echo Turn on remote management using Parsec
+:: cd "%UserProfile%"\Downloads"
+:: curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
+:: parsec-windows.exe /shared /vdd /silent
+
+echo Deploy secure remote access using Tailscale
+winget install "Tailscale" -h
+
+echo Install Google Chrome to sync Google account
+winget install "Google Chrome"
+
+echo Install Google Chrome to sync Google account files
+winget install "Google Drive"
+
+echo Disable startup apps
+reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
+reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDrive" /f
+
+echo Clear Desktop and Downloads
 del /q "%UserProfile%"\Desktop\*
 del /q "%Public%"\Desktop\*
 del /q "%UserProfile%"\Downloads\*
 rd /s /q "%SystemDrive%"\$recycle.bin
 
-echo Remove Apps at Startup
-reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
-reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDrive" /f
+:: echo Start Power Automate for further setup
+:: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
+:: start ms-powerautomate:
 
 :: echo Set up Google Chrome
-:: Sign In
-:: Activate sync
-:: Set as default browser (also pdf)
+:: Sign In with Google account to activate sync
+:: Set as default browser
 
 :: echo Set up Google Drive
-:: Sign in
-:: Add folders to sync
-:: Add folders to backup to Photos
+:: Sign in with Google account to activate sync
+:: Add Desktop and Documents files to Google Drive
+:: Add photos and videos from Photos to Google Photos
 
-:: pause
+pause
