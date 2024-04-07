@@ -17,6 +17,15 @@ netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 :: curl https://builds.parsecgaming.com/package/parsec-windows.exe -o parsec-windows.exe
 :: parsec-windows.exe /shared /vdd /silent
 
+echo Add Apps
+winget install "Google Chrome"
+winget install "Google Drive"
+
+:: echo Add Microsoft Teams
+:: cd "%UserProfile%\Downloads"
+:: curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
+:: teamsbootstrapper.exe -p
+
 echo Uninstall pre-installed apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
 winget uninstall --name "Dell Core Services"
@@ -38,15 +47,6 @@ winget uninstall --name "Microsoft-Tipps"
 winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
-
-echo Add Apps
-winget install "Google Chrome"
-winget install "Google Drive"
-
-:: echo Add Microsoft Teams
-:: cd "%UserProfile%\Downloads"
-:: curl -L https://go.microsoft.com/fwlink/?linkid=2243204 -o teamsbootstrapper.exe
-:: teamsbootstrapper.exe -p
 
 echo Add OS Updates
 usoclient ScanInstallWait
