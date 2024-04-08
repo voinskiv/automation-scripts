@@ -86,11 +86,9 @@ del /q "%Public%\Desktop\*"
 del /q "%UserProfile%\Downloads\*"
 rd /s /q "%SystemDrive%\$recycle.bin"
 
-:: echo Start Power Automate for further setup
-:: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
-:: start ms-powerautomate:
-
 echo [ ] Turn on data encryption with BitLocker
+
+echo [ ] Clear taskbar nad start menu
 
 echo [ ] Update pre-installed apps
 
