@@ -1,6 +1,6 @@
 @echo off
 
-Set up data encryption with BitLocker
+echo Set up data encryption with BitLocker
 manage-bde -on C:
 
 echo Update system
@@ -52,11 +52,6 @@ winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
 
-echo Update pre-installed apps
-:: winget upgrade --all --silent
-powershell -Command "& {Get-CimInstance -Namespace "Root\cimv2\mdm\dmmap" -ClassName "MDM_EnterpriseModernAppManagement_AppManagement01" | Invoke-CimMethod -MethodName UpdateScanMethod;}"
-start ms-windows-store:
-
 echo Install Microsoft 365 Apps
 winget install --name "Microsoft 365 Apps"
 
@@ -95,17 +90,14 @@ rd /s /q "%SystemDrive%\$recycle.bin"
 :: https://www.codeproject.com/Tips/647828/Press-Any-Key-Automatically-Usi
 :: start ms-powerautomate:
 
-:: echo Turn on data encryption with BitLocker
-:: Create BitLocker recovery key
-:: Save recovery key in Google Password Manager
+echo [ ] Turn on data encryption with BitLocker
 
-:: echo Set up Google Chrome
-:: Sign In with Google account to activate sync
-:: Set as default browser
+echo [ ] Update pre-installed apps
 
-:: echo Set up Google Drive
-:: Sign in with Google account to activate sync
-:: Add Desktop and Documents files to Google Drive
-:: Add photos and videos from Photos to Google Photos
+echo [ ] Set up Acrobat Reader
+
+echo [ ] Set up Google Chrome
+
+echo [ ] Set up Google Drive
 
 pause
