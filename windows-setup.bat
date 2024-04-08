@@ -88,7 +88,7 @@ rd /s /q "%SystemDrive%\$recycle.bin"
 
 echo [ ] Turn on data encryption with BitLocker
 
-echo [ ] Clear taskbar nad start menu
+echo [ ] Clear taskbar and start menu
 
 echo [ ] Update pre-installed apps
 
