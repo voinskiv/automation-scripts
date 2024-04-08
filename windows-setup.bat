@@ -52,7 +52,7 @@ winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
 
-echo Install Microsoft 365 Apps
+echo Install Microsoft 365 Apps as productivity solution
 winget install --name "Microsoft 365 Apps"
 
 echo Install Acrobat Reader to interact with PDF files
