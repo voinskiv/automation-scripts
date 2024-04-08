@@ -1,6 +1,6 @@
 @echo off
 
-echo Set up data encryption with BitLocker
+echo Set up data encryption using BitLocker
 manage-bde -on C:
 
 echo Update system
@@ -30,7 +30,7 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Ta
 echo Turn off Bing in search
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /V BingSearchEnabled /T REG_DWORD /D 0 /f
 
-echo Uninstall pre-installed apps
+echo Uninstall not needed pre-installed apps
 winget uninstall --name "Clipchamp" --accept-source-agreements
 winget uninstall --name "Dell Core Services"
 winget uninstall --name "Dell Digital Delivery"
@@ -52,10 +52,10 @@ winget uninstall --name "Xbox Game Bar"
 winget uninstall --name "Xbox"
 winget uninstall --name "Xbox TCUI"
 
-echo Install Microsoft 365 Apps
+echo Install Microsoft 365 Apps as productivity solution
 winget install --name "Microsoft 365 Apps"
 
-echo Install Acrobat Reader
+echo Install Acrobat Reader to interact with PDF
 winget install --name "Adobe Acrobat Reader DC (64-bit)"
 
 echo Turn on remote login using SSH
@@ -67,7 +67,7 @@ echo Turn on remote management using Remote Desktop
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall firewall set rule group="Remotedesktop" new enable=Yes
 
-echo Deploy secure remote access with Tailscale
+echo Deploy secure remote access using Tailscale
 winget install "Tailscale" -h
 
 echo Install Google Chrome to sync Google account
@@ -92,12 +92,6 @@ echo [ ] Clear taskbar and start menu
 
 echo [ ] Update pre-installed apps
 
-echo [ ] Set up Acrobat Reader
-
-echo [ ] Set up Tailscale
-
-echo [ ] Set up Google Chrome
-
-echo [ ] Set up Google Drive
+echo [ ] Set up installed apps
 
 pause
