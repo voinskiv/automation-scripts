@@ -4,7 +4,7 @@ Set up data encryption with BitLocker
 manage-bde -on C:
 
 echo Update system
-usoclient ScanInstallWait
+usoclient StartInteractiveScan
 
 echo Deploy Dell updates
 "%ProgramFiles%\Dell\CommandUpdate\dcu-cli.exe" /configure -scheduleAuto
