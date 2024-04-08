@@ -76,7 +76,7 @@ winget install --name "Google Chrome"
 echo Install Google Chrome to sync Google account files
 winget install "Google Drive"
 
-echo Disable startup apps
+echo Disable not needed startup apps
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDrive" /f
 
@@ -93,6 +93,8 @@ echo [ ] Clear taskbar nad start menu
 echo [ ] Update pre-installed apps
 
 echo [ ] Set up Acrobat Reader
+
+echo [ ] Set up Tailscale
 
 echo [ ] Set up Google Chrome
 
