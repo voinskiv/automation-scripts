@@ -76,6 +76,9 @@ winget install --name "Google Chrome"
 echo Install Google Chrome to sync Google account files
 winget install "Google Drive"
 
+echo Install Rclone as backup solution
+winget install Rclone
+
 echo Disable not needed startup apps
 reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SecurityHealth" /f
 reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "OneDrive" /f
