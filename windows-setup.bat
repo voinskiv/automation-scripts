@@ -89,6 +89,8 @@ del /q "%Public%\Desktop\*"
 del /q "%UserProfile%\Downloads\*"
 rd /s /q "%SystemDrive%\$recycle.bin"
 
+echo [ ] Create PIN to sign in
+
 echo [ ] Turn on data encryption with BitLocker
 
 echo [ ] Clear taskbar and start menu
