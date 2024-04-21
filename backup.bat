@@ -13,5 +13,8 @@ rclone sync %settings% "%USERPROFILE%\Desktop" "%destination%\Desktop\Letztes" -
 echo Back up Documents files
 rclone sync %settings% "%USERPROFILE%\Documents" "%destination%\Dokumente\Letztes" --backup-dir "%destination%\Dokumente\%timestamp%"
 
+echo Back up Pictures files
+rclone sync %settings% "%USERPROFILE%\Pictures" "%destination%\Bilder\Letztes" --backup-dir "%destination%\Bilder\%timestamp%"
+
 echo Back up Google Drive files
 rclone sync %settings% "G:\Meine Ablage" "%destination%\Meine Ablage\Letztes" --backup-dir "%destination%\Meine Ablage\%timestamp%"
