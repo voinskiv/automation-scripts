@@ -1,5 +1,7 @@
 @echo off
 
-rclone sync "%USERPROFILE%\Desktop" onedrive:"\Backups\%COMPUTERNAME%\Desktop\Letztes" --backup-dir onedrive:"\Backups\%COMPUTERNAME%\Desktop\%date%" --onedrive-no-versions
-rclone sync "%USERPROFILE%\Documents" onedrive:"\Backups\%COMPUTERNAME%\Dokumente\Letztes" --backup-dir onedrive:"\Backups\%COMPUTERNAME%\Dokumente\%date%" --onedrive-no-versions
-rclone sync "G:\Meine Ablage" onedrive:"\Backups\Meine Ablage\Letztes" --backup-dir onedrive:"\Backups\Meine Ablage\%date%" --onedrive-no-versions
+set destination=--onedrive-no-versions onedrive:"\Backups\%COMPUTERNAME%
+
+rclone sync "%USERPROFILE%\Desktop" %destination%\Desktop\Letztes" --backup-dir %destination%\Desktop\%date%"
+rclone sync "%USERPROFILE%\Documents" %destination%\Dokumente\Letztes" --backup-dir %destination%\Dokumente\%date%"
+rclone sync "G:\Meine Ablage" %destination%\Meine Ablage\Letztes" --backup-dir %destination%\Meine Ablage\%date%"
