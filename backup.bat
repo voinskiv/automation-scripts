@@ -8,10 +8,10 @@ set log=--log-file "%APPDATA%\rclone\backup.log"
 set settings=%options% %filter% %log%
 
 echo Back up Desktop files
-rclone sync %settings% "%USERPROFILE%\Desktop" %destination%\Desktop\Letztes --backup-dir %destination%\Desktop\%timestamp% 
+rclone sync %settings% "%USERPROFILE%\Desktop" "%destination%\Desktop\Letztes" --backup-dir "%destination%\Desktop\%timestamp%"
 
 echo Back up Documents files
-rclone sync %settings% "%USERPROFILE%\Documents" %destination%\Dokumente\Letztes --backup-dir %destination%\Dokumente\%timestamp%
+rclone sync %settings% "%USERPROFILE%\Documents" "%destination%\Dokumente\Letztes" --backup-dir "%destination%\Dokumente\%timestamp%"
 
 echo Back up Google Drive files
 rclone sync %settings% "G:\Meine Ablage" "%destination%\Meine Ablage\Letztes" --backup-dir "%destination%\Meine Ablage\%timestamp%"
