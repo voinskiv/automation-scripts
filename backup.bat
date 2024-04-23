@@ -1,7 +1,11 @@
 @echo off
 
+set time = %time: =0%
+
 set destination=onedrive:\Backups\%COMPUTERNAME%\%USERNAME%
-set timestamp=%date:~6,4%-%date:~3,2%-%date:~0,2%-%time:~0,2%%time:~3,2%%time:~6,2%
+set backupdate=%date:~6,4%-%date:~3,2%-%date:~0,2%
+set backuptime=%time:~0,2%%time:~3,2%%time:~6,2%
+set timestamp=%backupdate%-%backuptime: =0%
 set options=--progress --onedrive-no-versions
 set filter=--exclude .*/ --exclude ~*
 set log=--log-file "%APPDATA%\rclone\backup.log"
