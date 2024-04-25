@@ -9,14 +9,10 @@ set filter=--exclude .*/ --exclude ~*
 set log=--log-file "%APPDATA%\rclone\backup.log"
 set settings=%options% %filter% %log%
 
-:: echo Find local drive
-:: set drivelabel=Backups
-:: for /f %%d in ('wmic volume get driveletter^, label ^| find "%drivelabel%"') do set local=%%d
-:: if "%local%"=="" (exit /b) else set destination=%local%%path%
-
-echo Find cloud storage
-for /f %%d in ('rclone listremotes') do set remote=%%d
-if "%dremote%"=="" (exit /b) else set destination=%remote%%path%
+echo Find local drive
+set drivelabel=Backups
+for /f %%d in ('wmic volume get driveletter^, label ^| find "%drivelabel%"') do set local=%%d
+if "%local%"=="" (exit /b) else set destination=%local%%path%
 
 echo Back up Desktop files
 rclone sync %settings% "%USERPROFILE%\Desktop" "%destination%\Desktop\Letztes" --backup-dir "%destination%\Desktop\%timestamp%"
