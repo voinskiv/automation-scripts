@@ -1,5 +1,11 @@
 @echo off
 
+set drivelabel=Backups
+
+echo Find backup drive
+for /f %%d in ('wmic volume get driveletter^, label ^| find "%drivelabel%"') do set driveletter=%%d
+if "%driveletter%"=="" (exit /b) else set backupdrive=%driveletter::=%
+
 set destination=onedrive:\Backups\%COMPUTERNAME%\%USERNAME%
 set backupdate=%date:~6,4%-%date:~3,2%-%date:~0,2%
 set backuptime=%time:~0,2%%time:~3,2%%time:~6,2%
