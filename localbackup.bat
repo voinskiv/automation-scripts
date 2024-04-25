@@ -1,5 +1,6 @@
 @echo off
 
+set drivelabel=Backups
 set path=\Backups\%COMPUTERNAME%\%USERNAME%
 set backupdate=%date:~6,4%-%date:~3,2%-%date:~0,2%
 set backuptime=%time:~0,2%%time:~3,2%%time:~6,2%
@@ -10,7 +11,6 @@ set log=--log-file "%APPDATA%\rclone\backup.log"
 set settings=%options% %filter% %log%
 
 echo Find local drive
-set drivelabel=Backups
 for /f %%d in ('wmic volume get driveletter^, label ^| find "%drivelabel%"') do set local=%%d
 if "%local%"=="" (exit /b) else set destination=%local%%path%
 
