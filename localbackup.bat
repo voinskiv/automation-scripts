@@ -11,7 +11,7 @@ set log=--log-file "%APPDATA%\rclone\backup.log"
 set settings=%options% %filter% %log%
 
 echo Find local drive
-for /f %%d in ('wmic volume get driveletter^, label ^| find "%drivelabel%"') do set local=%%d
+for /f "skip=3" %d in ('powershell Get-Volume -FileSystemLabel %drivelabel%') do set drive=%d:
 if "%local%"=="" (exit /b) else set destination=%local%%path%
 
 echo Back up Desktop files
