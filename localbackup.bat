@@ -1,7 +1,7 @@
 @echo off
 
 set drivelabel=Backups
-set path=\Backups\%COMPUTERNAME%\%USERNAME%
+set backuppath=\Backups\%COMPUTERNAME%\%USERNAME%
 set backupdate=%date:~6,4%-%date:~3,2%-%date:~0,2%
 set backuptime=%time:~0,2%%time:~3,2%%time:~6,2%
 set timestamp=%backupdate%-%backuptime: =0%
@@ -12,7 +12,7 @@ set settings=%options% %filter% %log%
 
 echo Find local drive
 for /f "skip=3" %%d in ('powershell Get-Volume -FileSystemLabel %drivelabel%') do set local=%%d:
-if "%local%"=="" (exit /b) else set destination=%local%%path%
+if "%local%"=="+:" (echo Drive not found && exit /b) else set destination=%local%%backuppath%
 
 echo Back up Desktop files
 rclone sync %settings% "%USERPROFILE%\Desktop" "%destination%\Desktop\Letztes" --backup-dir "%destination%\Desktop\%timestamp%"
