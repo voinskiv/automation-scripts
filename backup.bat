@@ -1,6 +1,6 @@
 @echo off
 
-set path=\Backups\%COMPUTERNAME%\%USERNAME%
+set backuppath=\Backups\%COMPUTERNAME%\%USERNAME%
 set backupdate=%date:~6,4%-%date:~3,2%-%date:~0,2%
 set backuptime=%time:~0,2%%time:~3,2%%time:~6,2%
 set timestamp=%backupdate%-%backuptime: =0%
@@ -11,7 +11,7 @@ set settings=%options% %filter% %log%
 
 echo Find cloud storage
 for /f %%d in ('rclone listremotes') do set remote=%%d
-if "%dremote%"=="" (exit /b) else set destination=%remote%%path%
+if "%remote%"=="" (echo Storage not found && exit /b) else set destination=%remote%%backuppath%
 
 echo Back up Desktop files
 rclone sync %settings% "%USERPROFILE%\Desktop" "%destination%\Desktop\Letztes" --backup-dir "%destination%\Desktop\%timestamp%"
