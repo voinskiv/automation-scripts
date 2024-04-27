@@ -14,10 +14,18 @@ if [ "$OSTYPE" == "msys" ]; then
   alias i='winget install'
   alias o='start .'
   alias c='code'
-  alias d='scp'
+  alias d='dropfile'
   alias rd='remotedesktop'
+  alias rrdh='remove-rd-history'
 
-  remotedesktop () { mstsc -v:desktop-0$1 & disown; }
+  dropfile () { scp $1 Desktop-0$2:$3; }
+  remotedesktop () { mstsc -v:Desktop-0$1 & disown; }
+  remove-rd-history () {
+    reg delete "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default" /va /f
+    reg delete "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers" /f
+    reg add "HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Servers"
+    del /ah %USERPROFILE%\documents\default.rdp
+  }
 fi
 
 scripts () { curl https://raw.githubusercontent.com/voinskiv/automation-scripts/main/$1 -O; }
