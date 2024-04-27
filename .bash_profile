@@ -10,12 +10,14 @@ alias c='open -a "Visual Studio Code" .'
 alias ct='clear'
 alias r='. ~/.bash_profile'
 
-if [ "$OSTYPE" !== "msys" ]; then
+if [ "$OSTYPE" == "msys" ]; then
   alias i='winget install'
   alias o='start .'
   alias c='code -r .'
   alias d='scp'
-  alias rd='mstsc -v:'
+  alias rd='remotedesktop'
+
+  remotedesktop () { mstsc -v:desktop-0$1; }
 fi
 
 scripts () { curl https://raw.githubusercontent.com/voinskiv/automation-scripts/main/$1 -O; }
