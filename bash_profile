@@ -10,4 +10,4 @@ alias r='. ~/.bash_profile'
 
 google () { open "https://www.google.com/search?q=$1"; }
 youtube () { open "https://www.youtube.com/results?search_query=$1"; }
-tv () { open "https://my.tv/index.php?do=search&subaction=search&q=$1"; }
+tv () { open "https://my.tv/search/?do=search&subaction=search&q=$1"; }
