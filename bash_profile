@@ -8,6 +8,6 @@ alias o='open .'
 alias c='open -a "Visual Studio Code" .'
 alias r='. ~/.bash_profile'
 
-google () { open "https://www.google.com/search?q=$1"; }
-youtube () { open "https://www.youtube.com/results?search_query=$1"; }
+google () { open "https://google.com/search?q=$1"; }
+youtube () { open "https://youtube.com/results?search_query=$1"; }
 tv () { open "https://my.tv/search/?do=search&subaction=search&q=$1"; }
