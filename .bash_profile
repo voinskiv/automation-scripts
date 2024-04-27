@@ -17,7 +17,7 @@ if [ "$OSTYPE" == "msys" ]; then
   alias d='scp'
   alias rd='remotedesktop'
 
-  remotedesktop () { mstsc -v:desktop-0$1; }
+  remotedesktop () { mstsc -v:desktop-0$1 & disown; }
 fi
 
 scripts () { curl https://raw.githubusercontent.com/voinskiv/automation-scripts/main/$1 -O; }
