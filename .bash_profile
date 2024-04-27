@@ -6,14 +6,14 @@ alias g='google'
 alias y='youtube'
 alias t='tv'
 alias o='open .'
-alias c='open -a "Visual Studio Code" .'
+alias c='open -a "Visual Studio Code"'
 alias ct='clear'
 alias r='. ~/.bash_profile'
 
 if [ "$OSTYPE" == "msys" ]; then
   alias i='winget install'
   alias o='start .'
-  alias c='code -r .'
+  alias c='code'
   alias d='scp'
   alias rd='remotedesktop'
 
