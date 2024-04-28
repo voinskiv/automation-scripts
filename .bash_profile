@@ -11,6 +11,9 @@ alias ct='clear'
 alias r='. ~/.bash_profile'
 
 if [ "$OSTYPE" == "msys" ]; then
+  alias update=''
+  alias dellupdate=''
+  alias backup=''
   alias i='winget install'
   alias o='start'
   alias c='code'
