@@ -2,8 +2,6 @@
 #
 # Install WinGet packages, optimise and set settings.
 
-MANUFACTURER=$(powershell "Get-CimInstance -ClassName Win32_ComputerSystem | Select-Object -Property Manufacturer" | grep Dell)
-
 # winget install --name "Git" --source winget
 winget install --name "Tailscale" --silent
 winget install --name "Rclone"
@@ -38,7 +36,18 @@ fi
 
 
 
+$AppID = @(
+'Microsoft.ZuneMusic_8wekyb3d8bbwe'
+'Microsoft.YourPhone_8wekyb3d8bbwe'
+'Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe'
+'Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe'
+'Microsoft.MixedReality.Portal_8wekyb3d8bbwe'
+)
+ 
 
+for app in "${apps_to_install[@]}"; do
+  winget uninstall -e --id $app --silent --accept-source-agreements
+}
 
 
 
