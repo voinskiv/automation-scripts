@@ -36,7 +36,7 @@ fi
 
 
 
-$AppID = @(
+$app = @(
 'Microsoft.ZuneMusic_8wekyb3d8bbwe'
 'Microsoft.YourPhone_8wekyb3d8bbwe'
 'Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe'
@@ -45,11 +45,11 @@ $AppID = @(
 )
  
 
-for app in "${apps_to_install[@]}"; do
-  winget uninstall -e --id $app --silent --accept-source-agreements
-}
 
 
+for app in "${apps[@]}"; do
+  winget uninstall -e --id "${app}" --silent --accept-source-agreements
+done
 
 
 
