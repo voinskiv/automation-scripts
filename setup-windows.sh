@@ -1,61 +1,97 @@
 #!/bin/bash
 #
+# winget install --name "Git" --source winget
+#
 # Install WinGet packages, optimise and set settings.
 
-# winget install --name "Git" --source winget
-winget install --name "Tailscale" --silent
-winget install --name "Rclone"
-winget install --name "Google Chrome"
-winget install --name "Google Drive"
-winget install --name "Microsoft 365 Apps"
-winget install --name "Adobe Acrobat Reader DC (64-bit)"
+apps_to_uninstall=(
+  "Tailscale"
+  "Rclone"
+  "Google Chrome"
+  "Google Drive"
+  "Microsoft 365 Apps for Enterprise"
+  "Adobe Acrobat Reader DC (64-bit)"
+)
 
-winget uninstall --name "Clipchamp" --accept-source-agreements
-winget uninstall --name "Family"
-winget uninstall --name "Feedback-Hub"
-winget uninstall --name "Filme & TV"
-winget uninstall --name "Nachrichten"
-winget uninstall --name "Microsoft 365 (Office)"
-winget uninstall --name "Solitaire & Casual Games"
-winget uninstall --name "Spotify"
-winget uninstall --name "Microsoft-Tipps"
-winget uninstall --name "Xbox Game Bar"
-winget uninstall --name "Xbox"
-winget uninstall --name "Xbox TCUI"
+dell_apps_to_uninstall=(
+  "Dell Core Services"
+  "Dell Digital Delivery"
+  "Dell Digital Delivery Services"
+  "Dell Display Manager"
+  "Dell Optimizer"
+  "Dell SupportAssist"
+  "Dell SupportAssist OS Recovery Plugin for Dell Update"
+  "Dell SupportAssist Remediation"
+)
 
-if [[ -d /c/dell ]]; then
-  winget uninstall --name "Dell Core Services"
-  winget uninstall --name "Dell Digital Delivery"
-  winget uninstall --name "Dell Digital Delivery Services" --silent
-  "/C/Program Files/Dell/Dell Display Manager 2.0/uninst.exe" //S
-  "/C/Program Files (x86)/InstallShield Installation Information/{286A9ADE-A581-43E8-AA85-6F5D58C7DC88}/DellOptimizer.exe" -remove -silent
-  winget uninstall --name "Dell SupportAssist"
-  winget uninstall --name "Dell SupportAssist OS Recovery Plugin for Dell Update"
-  winget uninstall --name "Dell SupportAssist Remediation"
+apps_to_install=(
+  "Clipchamp"
+  "Family"
+  "Feedback-Hub"
+  "Filme & TV"
+  "Nachrichten"
+  "Microsoft 365 (Office)"
+  "Solitaire & Casual Games"
+  "Spotify"
+  "Microsoft-Tipps"
+  "Xbox Game Bar"
+  "Xbox"
+  "Xbox TCUI"
+)
+
+uninstall_apps() {
+  local app_list=("$@")
+  for app in "${app_list[@]}"; do
+    winget uninstall --name "$app" --accept-source-agreements --silent
+  done
+}
+
+install_apps() {
+  local app_list=("$@")
+  for app in "${app_list[@]}"; do
+    winget install --name "$app" --accept-source-agreements --silent
+  done
+}
+
+uninstall_apps "${apps_to_uninstall[@]}"
+
+if [[ "$(wmic csproduct get vendor | grep -o 'Dell')" == "Dell" ]]; then
+  uninstall_apps "${dell_apps_to_uninstall[@]}"
 fi
 
+install_apps "${apps_to_install[@]}"
 
 
-$app = @(
-'Microsoft.ZuneMusic_8wekyb3d8bbwe'
-'Microsoft.YourPhone_8wekyb3d8bbwe'
-'Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe'
-'Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe'
-'Microsoft.MixedReality.Portal_8wekyb3d8bbwe'
+
+# Function to set registry value
+set_registry_value() {
+    reg_key="$1"
+    value_name="$2"
+    value_data="$3"
+    reg add "$reg_key" /v "$value_name" /t REG_SZ /d "$value_data" /f
+}
+
+# Define a list of registry settings with comments
+registry_settings=(
+    # Change desktop background image
+    "HKCU\Control Panel\Desktop Wallpaper C:\Windows\Web\Wallpaper\Windows\img0.jpg"
+    # Change lock screen
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager RotatingLockScreenEnabled 0"
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager RotatingLockScreenOverlayEnabled 0"
+    # Turn off search on taskbar
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\Search SearchboxTaskbarMode 0"
+    # Turn off chat on taskbar
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced TaskbarMn 0"
+    # Turn off widgets on taskbar
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced TaskbarDa 0"
+    # Turn off Bing in search
+    "HKCU\Software\Microsoft\Windows\CurrentVersion\Search BingSearchEnabled 0"
 )
- 
 
-
-
-for app in "${apps[@]}"; do
-  winget uninstall -e --id "${app}" --silent --accept-source-agreements
+# Iterate over each registry setting and apply it
+for setting in "${registry_settings[@]}"; do
+    set_registry_value $setting
 done
-
-
-
-
-
-
 
 
 
@@ -96,7 +132,20 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v Ta
 ## Turn off widgets on taskbar.
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 ## Turn off Bing in search.
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v BingSearchEnabled /t REG_DWORD /d 0 /f
+
+
+
+reg add "HKCU\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "C:\Windows\Web\Wallpaper\Windows\img0.jpg" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DesktopSpotlight\Settings" /v EnabledState /t REG_DWORD /d "0" /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v RotatingLockScreenEnabled /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v RotatingLockScreenOverlayEnabled /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v SearchboxTaskbarMode /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarMn /t REG_DWORD /d 0 /f
+reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v TaskbarDa /t REG_DWORD /d 0 /f
 reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /V BingSearchEnabled /T REG_DWORD /D 0 /f
+
+
 
 
 
