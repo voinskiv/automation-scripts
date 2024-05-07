@@ -39,39 +39,6 @@ apps_to_install=(
   "Xbox TCUI"
 )
 
-uninstall_apps() {
-  local app_list=("$@")
-  for app in "${app_list[@]}"; do
-    winget uninstall --name "$app" --accept-source-agreements --silent
-  done
-}
-
-install_apps() {
-  local app_list=("$@")
-  for app in "${app_list[@]}"; do
-    winget install --name "$app" --accept-source-agreements --silent
-  done
-}
-
-uninstall_apps "${apps_to_uninstall[@]}"
-
-if [[ "$(wmic csproduct get vendor | grep -o 'Dell')" == "Dell" ]]; then
-  uninstall_apps "${dell_apps_to_uninstall[@]}"
-fi
-
-install_apps "${apps_to_install[@]}"
-
-
-
-# Function to set registry value
-set_registry_value() {
-    reg_key="$1"
-    value_name="$2"
-    value_data="$3"
-    reg add "$reg_key" /v "$value_name" /t REG_SZ /d "$value_data" /f
-}
-
-# Define a list of registry settings with comments
 registry_settings=(
     # Change desktop background image
     "HKCU\Control Panel\Desktop Wallpaper C:\Windows\Web\Wallpaper\Windows\img0.jpg"
@@ -87,6 +54,35 @@ registry_settings=(
     # Turn off Bing in search
     "HKCU\Software\Microsoft\Windows\CurrentVersion\Search BingSearchEnabled 0"
 )
+
+uninstall_apps() {
+  local app_list=("$@")
+  for app in "${app_list[@]}"; do
+    winget uninstall --name "$app" --accept-source-agreements --silent
+  done
+}
+
+install_apps() {
+  local app_list=("$@")
+  for app in "${app_list[@]}"; do
+    winget install --name "$app" --accept-source-agreements --silent
+  done
+}
+
+set_registry_value() {
+    local reg_key="$1"
+    local value_name="$2"
+    local value_data="$3"
+    reg add "$reg_key" /v "$value_name" /t REG_SZ /d "$value_data" /f
+}
+
+uninstall_apps "${apps_to_uninstall[@]}"
+
+if [[ "$(wmic csproduct get vendor | grep -o 'Dell')" == "Dell" ]]; then
+  uninstall_apps "${dell_apps_to_uninstall[@]}"
+fi
+
+install_apps "${apps_to_install[@]}"
 
 # Iterate over each registry setting and apply it
 for setting in "${registry_settings[@]}"; do
