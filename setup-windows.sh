@@ -40,7 +40,7 @@ apps_to_install=(
 )
 
 registry_settings=(
-    # Change desktop background image
+    # Set desktop background image
     "HKCU\Control Panel\Desktop Wallpaper C:\Windows\Web\Wallpaper\Windows\img0.jpg"
     # Change lock screen
     "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager RotatingLockScreenEnabled 0"
